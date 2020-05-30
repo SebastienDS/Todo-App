@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script.js" async></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Todo App</h1>
+
+        <div id="app">
+            <div class="d-flex">
+                <input type="text" class="form-control" placeholder="Add Todo" v-model="inputTodo" @keyup.enter="addTodo">
+                <button class="btn btn-primary" @click="addTodo">Add</button> 
+            </div>
+
+            <ul class="d-flex flex-column-reverse list-group">
+                <li v-for="post in posts" class="list-group-item">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn" :class="post.checked ? 'btn-success' : 'btn-danger'" @click="changeTodoState(post)"></button>
+                        </div>
+
+                        <input type="text" class="form-control" :placeholder="post.content" disabled>
+                        
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-danger" @click="deleteTodo(post)">delete</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
